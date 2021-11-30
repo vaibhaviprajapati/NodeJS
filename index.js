@@ -71,6 +71,4 @@ app.post('/update/:id', function(req, res){
         res.redirect('/show');
     });
 })
-var server = app.listen(4000, function(){
-    console.log("app running on 4000")
-});
+app.listen(process.env.PORT || 5000);
