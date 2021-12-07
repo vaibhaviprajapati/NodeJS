@@ -2,21 +2,25 @@ var express = require('express');
 var app = express();
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
+require('dotenv').config();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.set('view engine','ejs');
 
+
 var conn = mysql.createConnection({
-    host: 'localhost',
-    user:'root',
-    password:'',
-    database: 'node'
+    
+    host     : process.env.DB_HOST,
+    user     : process.env.DB_USER,
+    password : process.env.DB_PASS,
+    database : process.env.DB_NAME
 });
 
 conn.connect(function(err){
     if(err) throw err;
     console.log('connected successfully!!!!!!!')
+    
 })
 app.get('/', function(req, res){
     res.render('insert');
@@ -71,4 +75,4 @@ app.post('/update/:id', function(req, res){
         res.redirect('/show');
     });
 })
-app.listen(process.env.PORT || 5000);
+app.listen(5000);
