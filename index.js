@@ -75,4 +75,4 @@ app.post('/update/:id', function(req, res){
         res.redirect('/show');
     });
 })
-app.listen(process.env.PORT || 8261);
+app.listen(process.env.PORT || 3306);
